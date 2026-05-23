@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevPlatform - Developer Utility Platform & Rate Limiter</title>
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 1. Sticky Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">DevPlatform</a>
+      <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#use-cases">Use Cases</a></li>
+        <li><a href="#tech-stack">Tech Stack</a></li>
+        <li><a href="#interview">Interview Q&A</a></li>
+        <li><a href="#user-guide">User Guide</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 2. Hero Section -->
+  <header class="hero-section">
+    <div class="hero-container">
+      <span class="hero-badge">Full Stack Project</span>
+      <h1 class="hero-title">Developer Utility Platform</h1>
+      <h2 class="hero-subtitle">with Distributed Rate Limiter</h2>
+      <p class="hero-description">
+        A highly scalable, multi-service developer utility suite integrated with an active distributed token bucket and sliding window rate limiter. Built to handle heavy high-concurrency requests, evaluate complex SQL syntax safety, generate execution plans, and sandbox secure API requests in real time.
+      </p>
+      <div class="hero-actions">
+        <a href="#architecture" class="btn btn-primary">View Architecture</a>
+        <a href="#interview" class="btn btn-secondary">Interview Questions</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-value">2</div>
+          <div class="stat-label">Microservices</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">10,000+</div>
+          <div class="stat-label">req/sec</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Core Modules</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Empty divs with correct IDs -->
+  <div id="overview" class="section-container section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">What We Built</span>
+        <h2 class="section-title">Two Services. One Ecosystem.</h2>
+        <p class="section-subtitle">A complete developer productivity platform built as a real microservices system</p>
+      </div>
+      
+      <div class="overview-grid">
+        <!-- Left Column: Project Summary Card -->
+        <div class="card project-summary-card">
+          <h3 class="card-title">What is this project?</h3>
+          <p class="card-description">
+            A self-hosted, highly performant developer tooling platform consisting of two Spring Boot microservices working in active tandem. Designed to streamline common database engineering, REST execution, and security tasks while maintaining distributed API throttling across all clients.
+          </p>
+          
+          <div class="service-blocks">
+            <div class="service-block">
+              <div class="service-icon">⚡</div>
+              <div class="service-info">
+                <h4 class="service-name">Rate Limiter Service (Port 8081)</h4>
+                <p class="service-desc">Protects all API endpoints using Token Bucket and Sliding Window algorithms. Backed by Redis for distributed state.</p>
+              </div>
+            </div>
+            
+            <div class="service-block">
+              <div class="service-icon">🛠️</div>
+              <div class="service-info">
+                <h4 class="service-name">Developer Toolkit Service (Port 8080)</h4>
+                <p class="service-desc">Four modules — SQL Analyser, Endpoint Sandbox, Execution Plan Visualiser, and Audit Logger.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: 2x2 Modules Grid -->
+        <div class="modules-grid">
+          <!-- Card 1 -->
+          <div class="card module-card">
+            <div class="module-header">
+              <span class="module-emoji">🔍</span>
+              <h3 class="card-title">SQL Analyser</h3>
+            </div>
+            <p class="card-description">Detects N+1 patterns, missing indexes, full table scans. Returns severity score 0-100.</p>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="card module-card">
+            <div class="module-header">
+              <span class="module-emoji">🌐</span>
+              <h3 class="card-title">Endpoint Sandbox</h3>
+            </div>
+            <p class="card-description">Fire HTTP requests to any endpoint in real time. View status, latency, and response body.</p>
+          </div>
+          
+          <!-- Card 3 -->
+          <div class="card module-card">
+            <div class="module-header">
+              <span class="module-emoji">📊</span>
+              <h3 class="card-title">Execution Plan</h3>
+            </div>
+            <p class="card-description">Runs EXPLAIN ANALYZE on PostgreSQL queries. Highlights bottleneck nodes visually.</p>
+          </div>
+          
+          <!-- Card 4 -->
+          <div class="card module-card">
+            <div class="module-header">
+              <span class="module-emoji">📋</span>
+              <h3 class="card-title">Audit Logger</h3>
+            </div>
+            <p class="card-description">Spring AOP logs every request with correlation IDs for full distributed request tracing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="architecture" class="section-container section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">System Design</span>
+        <h2 class="section-title">Architecture Diagram</h2>
+        <p class="section-subtitle">How the two services communicate and manage distributed rate limiting state</p>
+      </div>
+      
+      <div class="architecture-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%;">
+        <div class="canvas-container" style="position: relative; width: 100%; max-width: 1000px; background: #0A1628; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+          <canvas id="arch-diagram" width="1000" height="500" style="display: block; width: 100%; height: auto;"></canvas>
+        </div>
+        
+        <button id="toggle-animation-btn" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; font-size: 15px;">
+          <span id="anim-btn-icon">⏸</span>
+          <span id="anim-btn-text">Pause Animation</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="use-cases" class="section-container section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Real World Value</span>
+        <h2 class="section-title">Who Uses This and Why</h2>
+        <p class="section-subtitle">Practical use cases this platform solves in high-availability and development environments</p>
+      </div>
+      
+      <div class="use-cases-grid">
+        <!-- Card 1 -->
+        <div class="card use-case-card">
+          <div class="use-case-header">
+            <h3 class="card-title" style="color: var(--primary);">🏦 Banking Applications</h3>
+          </div>
+          <div class="use-case-blocks">
+            <div class="problem-block">
+              <span class="block-icon">❌</span>
+              <div class="block-text">
+                <strong>Problem:</strong> APIs serving 50,000+ requests/day need protection from sudden traffic spikes.
+              </div>
+            </div>
+            <div class="solution-block">
+              <span class="block-icon">✅</span>
+              <div class="block-text">
+                <strong>Solution:</strong> Rate Limiter enforces per-client limits using Token Bucket — same pattern used by SBI pension APIs.
+              </div>
+            </div>
+          </div>
+          <div class="use-case-footer">
+            <span class="tech-badge">Production Pattern</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card use-case-card">
+          <div class="use-case-header">
+            <h3 class="card-title" style="color: var(--primary);">🐛 SQL Debugging in Dev</h3>
+          </div>
+          <div class="use-case-blocks">
+            <div class="problem-block">
+              <span class="block-icon">❌</span>
+              <div class="block-text">
+                <strong>Problem:</strong> Developers waste hours finding why a query is slow in production.
+              </div>
+            </div>
+            <div class="solution-block">
+              <span class="block-icon">✅</span>
+              <div class="block-text">
+                <strong>Solution:</strong> SQL Analyser detects N+1 patterns and missing indexes before code reaches production.
+              </div>
+            </div>
+          </div>
+          <div class="use-case-footer">
+            <span class="tech-badge">Developer Productivity</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card use-case-card">
+          <div class="use-case-header">
+            <h3 class="card-title" style="color: var(--primary);">🔗 API Integration Testing</h3>
+          </div>
+          <div class="use-case-blocks">
+            <div class="problem-block">
+              <span class="block-icon">❌</span>
+              <div class="block-text">
+                <strong>Problem:</strong> Switching to Postman mid-development breaks flow and slows delivery.
+              </div>
+            </div>
+            <div class="solution-block">
+              <span class="block-icon">✅</span>
+              <div class="block-text">
+                <strong>Solution:</strong> Endpoint Sandbox lets you test any REST endpoint without leaving your workflow.
+              </div>
+            </div>
+          </div>
+          <div class="use-case-footer">
+            <span class="tech-badge">DevEx</span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card use-case-card">
+          <div class="use-case-header">
+            <h3 class="card-title" style="color: var(--primary);">🔍 Distributed Tracing</h3>
+          </div>
+          <div class="use-case-blocks">
+            <div class="problem-block">
+              <span class="block-icon">❌</span>
+              <div class="block-text">
+                <strong>Problem:</strong> In microservices, tracking a single request across services is complex.
+              </div>
+            </div>
+            <div class="solution-block">
+              <span class="block-icon">✅</span>
+              <div class="block-text">
+                <strong>Solution:</strong> Audit Logger assigns correlation IDs so you can trace any request end-to-end.
+              </div>
+            </div>
+          </div>
+          <div class="use-case-footer">
+            <span class="tech-badge">Observability</span>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card use-case-card">
+          <div class="use-case-header">
+            <h3 class="card-title" style="color: var(--primary);">🛡️ Multi-Tenant APIs</h3>
+          </div>
+          <div class="use-case-blocks">
+            <div class="problem-block">
+              <span class="block-icon">❌</span>
+              <div class="block-text">
+                <strong>Problem:</strong> Different clients need different rate limits on the same endpoints.
+              </div>
+            </div>
+            <div class="solution-block">
+              <span class="block-icon">✅</span>
+              <div class="block-text">
+                <strong>Solution:</strong> Policies are per client-id and per endpoint, hot-reloadable without restart.
+              </div>
+            </div>
+          </div>
+          <div class="use-case-footer">
+            <span class="tech-badge">Scalability</span>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card use-case-card">
+          <div class="use-case-header">
+            <h3 class="card-title" style="color: var(--primary);">🗄️ Database Performance</h3>
+          </div>
+          <div class="use-case-blocks">
+            <div class="problem-block">
+              <span class="block-icon">❌</span>
+              <div class="block-text">
+                <strong>Problem:</strong> Junior developers can't read raw EXPLAIN ANALYZE output from PostgreSQL.
+              </div>
+            </div>
+            <div class="solution-block">
+              <span class="block-icon">✅</span>
+              <div class="block-text">
+                <strong>Solution:</strong> Execution Plan Visualiser turns complex plans into highlighted trees.
+              </div>
+            </div>
+          </div>
+          <div class="use-case-footer">
+            <span class="tech-badge">Accessibility</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tech-stack" class="section-container section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Technologies</span>
+        <h2 class="section-title">Tech Stack</h2>
+        <p class="section-subtitle">Every technology and why it was chosen</p>
+      </div>
+      
+      <div class="tech-stack-grid">
+        <!-- Column 1: Backend -->
+        <div class="card tech-card">
+          <h3 class="card-title" style="color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 10px;">Backend</h3>
+          <ul class="tech-list">
+            <li class="tech-item">
+              <span class="tech-icon">☕</span>
+              <div class="tech-info">
+                <span class="tech-name">Java 17</span>
+                <span class="tech-reason">Primary language, LTS version</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🍃</span>
+              <div class="tech-info">
+                <span class="tech-name">Spring Boot 3</span>
+                <span class="tech-reason">Production-grade framework</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🔒</span>
+              <div class="tech-info">
+                <span class="tech-name">Spring Security</span>
+                <span class="tech-reason">JWT auth and endpoint protection</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">📡</span>
+              <div class="tech-info">
+                <span class="tech-name">REST API</span>
+                <span class="tech-reason">Service communication</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🔄</span>
+              <div class="tech-info">
+                <span class="tech-name">Spring AOP</span>
+                <span class="tech-reason">Cross-cutting audit concerns</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🗄️</span>
+              <div class="tech-info">
+                <span class="tech-name">Spring Data JPA</span>
+                <span class="tech-reason">Database abstraction layer</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Data and Messaging -->
+        <div class="card tech-card">
+          <h3 class="card-title" style="color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 10px;">Data and Messaging</h3>
+          <ul class="tech-list">
+            <li class="tech-item">
+              <span class="tech-icon">🔴</span>
+              <div class="tech-info">
+                <span class="tech-name">Redis</span>
+                <span class="tech-reason">Distributed rate limit state storage</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🐘</span>
+              <div class="tech-info">
+                <span class="tech-name">PostgreSQL</span>
+                <span class="tech-reason">Relational data persistence</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🔑</span>
+              <div class="tech-info">
+                <span class="tech-name">JWT</span>
+                <span class="tech-reason">Stateless authentication tokens</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">📦</span>
+              <div class="tech-info">
+                <span class="tech-name">Docker</span>
+                <span class="tech-reason">Containerized deployment</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🐳</span>
+              <div class="tech-info">
+                <span class="tech-name">Docker Compose</span>
+                <span class="tech-reason">Multi-service orchestration</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Concepts Applied -->
+        <div class="card tech-card">
+          <h3 class="card-title" style="color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 10px;">Concepts Applied</h3>
+          <ul class="tech-list">
+            <li class="tech-item">
+              <span class="tech-icon">⚡</span>
+              <div class="tech-info">
+                <span class="tech-name">Token Bucket</span>
+                <span class="tech-reason">Burst-tolerant rate limiting</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🪟</span>
+              <div class="tech-info">
+                <span class="tech-name">Sliding Window</span>
+                <span class="tech-reason">Strict rate enforcement</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🔗</span>
+              <div class="tech-info">
+                <span class="tech-name">Correlation IDs</span>
+                <span class="tech-reason">Distributed tracing</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🛡️</span>
+              <div class="tech-info">
+                <span class="tech-name">Fail-Open Pattern</span>
+                <span class="tech-reason">Resilience by design</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">🧩</span>
+              <div class="tech-info">
+                <span class="tech-name">Microservices</span>
+                <span class="tech-reason">Independent deployability</span>
+              </div>
+            </li>
+            <li class="tech-item">
+              <span class="tech-icon">📐</span>
+              <div class="tech-info">
+                <span class="tech-name">SOLID Principles</span>
+                <span class="tech-reason">Clean architecture</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Why not Cloud explanation card -->
+      <div class="card why-not-cloud-card">
+        <h3 class="card-title" style="color: #ffffff; font-size: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">🌐</span> Why no AWS in this project?
+        </h3>
+        <p class="card-description" style="color: var(--text-muted); font-size: 15px; line-height: 1.6; margin-top: 10px;">
+          This project intentionally runs fully local via Docker Compose to demonstrate deep understanding of the underlying infrastructure. AWS abstracts Redis into ElastiCache and PostgreSQL into RDS — here every layer is visible and controllable. The architecture is cloud-ready: swap Docker for ECS and localhost for managed services and it deploys to AWS in under an hour.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="interview" class="section-container section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Interview Prep</span>
+        <h2 class="section-title" style="color: var(--primary);">Top Interview Questions</h2>
+        <p class="section-subtitle" style="color: #475569;">Questions you will be asked about this project — with strong answers</p>
+      </div>
+
+      <!-- Category Filter Buttons -->
+      <div class="interview-filter-container">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="system-design">System Design</button>
+        <button class="filter-btn" data-category="java-spring">Java/Spring</button>
+        <button class="filter-btn" data-category="algorithms">Algorithms</button>
+        <button class="filter-btn" data-category="resilience">Resilience</button>
+        <button class="filter-btn" data-category="database">Database</button>
+      </div>
+
+      <!-- Accordion List -->
+      <div class="accordion-container">
+        <!-- Q1 -->
+        <div class="accordion-item" data-category="system-design">
+          <div class="accordion-header">
+            <span class="question-text">Why did you split this into two microservices instead of one monolith?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">System Design</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              The Rate Limiter needs to scale independently from the Toolkit. If SQL analysis traffic spikes, I don't want rate limiting to be affected. Also, the Rate Limiter can protect other services too — it's a reusable infrastructure component, not just a feature of the Toolkit.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="accordion-item" data-category="system-design">
+          <div class="accordion-header">
+            <span class="question-text">How does the Dev Toolkit call the Rate Limiter?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">System Design</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              Via a synchronous REST call in the <code>RateLimiterClient</code> class before processing any request. The call has a hard 200ms timeout so the Rate Limiter can never slow down the Toolkit. If it times out or throws any exception, we fail open — allow the request through — and log a <code>LIMITER_DOWN</code> status in the audit.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="accordion-item" data-category="system-design">
+          <div class="accordion-header">
+            <span class="question-text">What happens if Redis goes down?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">System Design</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              The Rate Limiter loses its state but because <code>RateLimiterClient</code> wraps every call in try-catch and fails open, the Toolkit keeps serving requests. We log <code>LIMITER_DOWN</code> in every audit entry so operators can see exactly when Redis was unavailable. In production you'd add Redis Sentinel or Cluster for high availability.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="accordion-item" data-category="system-design">
+          <div class="accordion-header">
+            <span class="question-text">How would you scale this to handle 1 million requests per day?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">System Design</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              The Rate Limiter is already horizontally scalable because all state lives in Redis. You'd run multiple Rate Limiter instances behind a load balancer — they all read and write the same Redis keys so limits are consistent. For the Toolkit, the SQL Analyser is stateless so it scales horizontally too. The bottleneck would be PostgreSQL for audit logs — you'd add read replicas and archive old logs.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="accordion-item" data-category="java-spring">
+          <div class="accordion-header">
+            <span class="question-text">How does Spring AOP work in your audit logger?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">Java/Spring</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              I used <code>@Around</code> advice with a pointcut matching all controller methods. Before the method runs, I generate a UUID correlation ID and call the Rate Limiter. After it runs, I calculate latency and save everything to PostgreSQL. <code>@Around</code> is the right advice type here because I need to wrap the method — measure time before and after — which <code>@Before</code> or <code>@After</code> alone can't do.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="accordion-item" data-category="java-spring">
+          <div class="accordion-header">
+            <span class="question-text">Why did you use HandlerInterceptor in the Rate Limiter instead of a Filter?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">Java/Spring</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <code>HandlerInterceptor</code> runs after Spring's <code>DispatcherServlet</code> resolves the handler, so I have access to the handler method metadata. A <code>Filter</code> runs before <code>DispatcherServlet</code> and knows nothing about Spring MVC. For rate limiting I needed the mapped endpoint path like <code>/api/sql/analyse</code>, not the raw request URI, so <code>HandlerInterceptor</code> was the right choice.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="accordion-item" data-category="java-spring">
+          <div class="accordion-header">
+            <span class="question-text">How is Redis used differently by Token Bucket vs Sliding Window?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">Java/Spring</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              Token Bucket uses a Redis Hash to store two fields — current token count and last refill time. Sliding Window uses a Redis ZSet (sorted set) where each member is a request timestamp and the score is the same timestamp. This lets me efficiently remove entries older than the window using <code>removeRangeByScore</code> and count active entries with <code>zCard</code> — both O(log N) operations.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="accordion-item" data-category="algorithms">
+          <div class="accordion-header">
+            <span class="question-text">When would you choose Token Bucket over Sliding Window?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">Algorithms</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              Token Bucket allows controlled bursting — a client can fire several requests quickly as long as they accumulated tokens during quiet periods. This is ideal for the SQL Analyser where a developer might run 5 queries in quick succession. Sliding Window is strict — it counts every request in the last N seconds with no burst allowance. This is better for <code>/api/sql/explain</code> which hits the real database and has high cost per request.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="accordion-item" data-category="algorithms">
+          <div class="accordion-header">
+            <span class="question-text">What is the N+1 query problem and how does your SQL Analyser detect it?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">Algorithms</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              N+1 happens when you fetch N parent records and then fire one query per record to get children — N+1 total queries instead of one JOIN. My analyser looks for SELECT statements nested inside loops by detecting repeated identical SELECT patterns in the SQL string. It's a static analysis approach — not perfect but catches the most common cases. The fix is to use a JOIN or a batch fetch.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="accordion-item" data-category="resilience">
+          <div class="accordion-header">
+            <span class="question-text">What is fail-open vs fail-closed and which did you implement?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">Resilience</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              Fail-open means if the Rate Limiter is down, requests are allowed through. Fail-closed means all requests are rejected if rate limiting is unavailable. I chose fail-open because the Rate Limiter is a supporting service — its job is to protect, not to gatekeep. If it fails, the cost is that some requests get through without rate limiting. The cost of fail-closed would be complete downtime of the Toolkit whenever Redis has a hiccup — unacceptable for a developer tool.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="accordion-item" data-category="database">
+          <div class="accordion-header">
+            <span class="question-text">Why PostgreSQL for the Toolkit and Redis for the Rate Limiter?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">Database</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              Audit logs and request history are relational — they need structured querying, filtering by correlation ID, and long-term storage. PostgreSQL is the right tool. Rate limit state is purely ephemeral counters and timestamps that need sub-millisecond reads and writes with automatic TTL expiry. Redis was built for exactly this — it's why every major API gateway uses it for rate limiting.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="accordion-item" data-category="database">
+          <div class="accordion-header">
+            <span class="question-text">How do you test the audit logger without running a real database?</span>
+            <div class="accordion-meta">
+              <span class="category-badge">Database</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              In tests I use H2 in-memory database with the test Spring profile. H2 is compatible with JPA and runs entirely in memory — no PostgreSQL needed. I also mock the <code>RateLimiterClient</code> with <code>@MockBean</code> so tests don't need the Rate Limiter service running. This gives me full integration test coverage of the AOP logging behavior in pure isolation.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. User Guide Section -->
+  <section id="user-guide" class="section-container section-dark">
+    <div class="container">
+      <div class="section-badge">How To Use</div>
+      <h2 class="section-title">Step-by-Step User Guide</h2>
+      <p class="section-subtitle">
+        A complete walkthrough of every feature in the platform
+      </p>
+      <div id="guide-content"></div>
+    </div>
+  </section>
+
+  <!-- 4. Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p class="footer-credit">Developed with passion by Anshul</p>
+      <div class="footer-socials">
+        <a href="https://github.com" target="_blank" class="footer-link">GitHub</a>
+        <span class="separator">•</span>
+        <a href="https://linkedin.com" target="_blank" class="footer-link">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="architecture.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
