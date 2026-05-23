@@ -564,7 +564,7 @@ node --version      # should show 18+</div>
           <div class="step-content">
             <h4 class="step-title"><span class="step-icon">📥</span> Clone and Open the Project</h4>
             <p class="step-desc">Clone the repository and open it in your IDE.</p>
-            <div class="step-code">git clone https://github.com/CoderAnshulSoni/developer-platform.git
+            <div class="step-code">git clone https://github.com/CoderAnshulSoni/Developer-Utility-Platform-with-Distributed-Rate-Limiter.git
 cd developer-platform</div>
             <div class="step-note info">ℹ️ The repo has three folders: rate-limiter-service, dev-toolkit-service, frontend</div>
           </div>
