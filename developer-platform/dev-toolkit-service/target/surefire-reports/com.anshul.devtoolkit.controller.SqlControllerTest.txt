@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.anshul.devtoolkit.controller.SqlControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.534 s -- in com.anshul.devtoolkit.controller.SqlControllerTest

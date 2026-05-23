@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.anshul.devtoolkit.integration.FullFlowIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.304 s -- in com.anshul.devtoolkit.integration.FullFlowIntegrationTest

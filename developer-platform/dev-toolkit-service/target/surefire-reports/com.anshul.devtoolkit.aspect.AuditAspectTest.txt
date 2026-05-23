@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.anshul.devtoolkit.aspect.AuditAspectTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 25.23 s -- in com.anshul.devtoolkit.aspect.AuditAspectTest

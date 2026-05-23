@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.anshul.ratelimiter.controller.PolicyControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.97 s -- in com.anshul.ratelimiter.controller.PolicyControllerTest

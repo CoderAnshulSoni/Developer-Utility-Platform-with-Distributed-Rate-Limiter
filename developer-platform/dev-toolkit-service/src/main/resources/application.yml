@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: dev-toolkit-service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/devtoolkit
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  sql:
+    init:
+      mode: always
+
+rate-limiter:
+  base-url: http://localhost:8081
+  enabled: true
+  timeout-ms: 200
